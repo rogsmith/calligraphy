@@ -29,6 +29,7 @@ module Calligraphy
 
       def verify_resource_scope
         # Prevent any request with `.` or `..` as part of the resource.
+        logger.debug params[:resource]
         head :forbidden if %w[. ..].any? do |seg|
           params[:resource].include? seg
         end
